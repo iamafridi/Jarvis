@@ -1,5 +1,3 @@
-
-```
 # **Jarvis - Voice Assistant**
 
 **Jarvis** is a voice-controlled assistant built using Python. It can recognize voice commands, search the web, tell jokes, announce the time, and open websites.
@@ -54,4 +52,3 @@ Feel free to fork this project and submit pull requests!
 ## **License**
 
 This project is open-source under the **MIT License**.
-```
