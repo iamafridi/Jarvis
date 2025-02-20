@@ -1,58 +1,57 @@
-Jarvis - Voice Assistant
 
-Jarvis is a voice-controlled assistant built using Python. It can recognize voice commands, search the web, tell jokes, announce the time, and open websites.
+```
+# **Jarvis - Voice Assistant**
 
-Features
+**Jarvis** is a voice-controlled assistant built using Python. It can recognize voice commands, search the web, tell jokes, announce the time, and open websites.
 
-Voice Recognition: Listens and processes voice commands.
+## **Features**
 
-Text-to-Speech: Responds using speech synthesis.
+- **Voice Recognition**: Listens and processes voice commands.
+- **Text-to-Speech**: Responds using speech synthesis.
+- **Web Search**: Searches queries on DuckDuckGo.
+- **Time Announcement**: Tells the current time.
+- **Joke Telling**: Fetches and tells a random joke.
+- **Website Opening**: Opens popular websites like Google, YouTube, and Facebook.
 
-Web Search: Searches queries on DuckDuckGo.
+## **Installation**
 
-Time Announcement: Tells the current time.
+### **Prerequisites**
 
-Joke Telling: Fetches and tells a random joke.
-
-Website Opening: Opens popular websites like Google, YouTube, and Facebook.
-
-Installation
-
-Prerequisites
-
-Ensure you have Python 3.11+ installed.
+Ensure you have **Python 3.11+** installed.
 
 Install the required dependencies:
 
+```
 pip install pyttsx3 speechrecognition requests
+```
 
-Usage
+## **Usage**
 
-Run the assistant using:
+1. Run the assistant using:
 
-python main.py
+   ```
+   python main.py
+   ```
 
-Say "Jarvis" to activate it, then give a command such as:
+2. Say "**Jarvis**" to activate it, then give a command such as:
 
-"Search Python programming"
+   - "Search Python programming"
+   - "What is the time?"
+   - "Tell me a joke"
+   - "Open YouTube"
 
-"What is the time?"
+3. **Environment Variables**: If using an API key, store it in an **.env** file and load it with:
 
-"Tell me a joke"
+   ```
+   from dotenv import load_dotenv
+   load_dotenv()
+   ```
 
-"Open YouTube"
-
-Environment Variables
-
-If using an API key, store it in an .env file and load it with:
-
-from dotenv import load_dotenv
-load_dotenv()
-
-Contributing
+## **Contributing**
 
 Feel free to fork this project and submit pull requests!
 
-License
+## **License**
 
-This project is open-source under the MIT License.
+This project is open-source under the **MIT License**.
+```
