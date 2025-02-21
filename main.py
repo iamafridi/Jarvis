@@ -3,6 +3,9 @@ import speech_recognition as sr
 import webbrowser
 import os
 import sys
+import requests
+import re
+import urllib.parse
 from datetime import datetime
 import requests
 from musicLibrary import music
@@ -71,19 +74,48 @@ def open_website(command):
     else:
         speak("I didn't understand which site to open.")
 
+# def play_music(command):
+#     print(f"DEBUG: Entering play_music with command: {command}")
+#     query = command.replace("play", "").strip()
+#     if "by" in query:
+#         song, artist = query.split("by", 1)
+#         song, artist = song.strip(), artist.strip()
+#         search_query = f"{song} {artist} song"
+#     else:
+#         search_query = f"{query} song"
+#     youtube_search_url = f"https://www.youtube.com/results?search_query={urllib.parse.quote(search_query)}"
+#     youtube_watch_url = f"https://www.youtube.com/embed?listType=search&list={urllib.parse.quote(search_query)}"
+#     print(f"DEBUG: Opening YouTube autoplay: {youtube_watch_url}")
+#     webbrowser.open(youtube_watch_url)
+#     speak(f"Playing {query} on YouTube.")
 def play_music(command):
     print(f"DEBUG: Entering play_music with command: {command}")
     query = command.replace("play", "").strip()
+    
     if "by" in query:
         song, artist = query.split("by", 1)
         song, artist = song.strip(), artist.strip()
         search_query = f"{song} {artist} song"
     else:
         search_query = f"{query} song"
-    youtube_autoplay_url = f"https://www.youtube.com/embed?listType=search&list={search_query.replace(' ', '+')}"
-    print(f"DEBUG: Opening YouTube: {youtube_autoplay_url}")
-    webbrowser.open(youtube_autoplay_url)
-    speak(f"Playing {query} on YouTube.")
+
+    youtube_search_url = f"https://www.youtube.com/results?search_query={urllib.parse.quote(search_query)}"
+    
+    # Get the first video result
+    print(f"DEBUG: Fetching YouTube search results: {youtube_search_url}")
+    
+    response = requests.get(youtube_search_url)
+    video_ids = re.findall(r"watch\?v=(\S{11})", response.text)
+
+    if video_ids:
+        first_video_url = f"https://www.youtube.com/watch?v={video_ids[0]}"
+        print(f"DEBUG: Opening first video: {first_video_url}")
+        webbrowser.open(first_video_url)
+        speak(f"Playing {query} on YouTube.")
+    else:
+        print("DEBUG: No video found.")
+        speak("Sorry, I couldn't find that song.")
+
 
 def process_command(command):
     command = command.strip()
@@ -118,7 +150,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 
 # import pyttsx3
 # import speech_recognition as sr
